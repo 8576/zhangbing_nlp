@@ -56,7 +56,7 @@ def viterbi(obs, states, start_p, trans_p, emit_p):
 
 if __name__ == '__main__':
     states = ['Sunny', 'Cloudy', 'Rainy']
-    obs = ('dry', 'dryish', 'soggy')
+    obs = ('dry', 'dryish', 'soggy', 'soggy', 'dryish')
     start_p = {'Sunny': .63, 'Cloudy': .17, 'Rainy': .20}
     trans_p = {
         'Sunny': {'Sunny': .5, 'Cloudy': .375, 'Rainy': .2},
@@ -68,7 +68,11 @@ if __name__ == '__main__':
         'Cloudy': {'dry': .25, 'dryish': .25, 'soggy': .25},
         'Rainy': {'dry': .05, 'dryish': .1, 'soggy': .5}
     }
-
-    print(viterbi(obs, states, start_p, trans_p, emit_p))
+    statesquence = ''
+    result =viterbi(obs, states, start_p, trans_p, emit_p)
+    for item in result:
+        print(item)
+        statesquence += ' ' + list(item.keys())[0]
+    print('状态序列', statesquence, sep=':')
 
 
